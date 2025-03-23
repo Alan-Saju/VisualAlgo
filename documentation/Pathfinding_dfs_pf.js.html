@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Pathfinding/dfs_pf.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Pathfinding/dfs_pf.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Class for running a Depth-first search on the grid */
+class DFS {
+  constructor() {}
+
+  /**
+   * Run the algorithm with the provided values.
+   * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
+   * @param {Object} start - Row and column of the source node
+   * @param {Object} end - Row and column of the target node
+   */
+  async run(grid, start, end) {
+    // resetting the grid before every run
+    resetGrid(grid);
+    var node = grid[start.y][start.x];
+    // calling the recursive dfs function and awaiting
+    // the last node of the path
+    var pathStart = await this.dfs(grid, end, [node]);
+    this.makePath(grid, pathStart);
+  }
+
+  /**
+   * A recursive function for running a depth-first search
+   * on the provided grid.
+   * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
+   * @param {Object} end - Row and column of the target node
+   * @param {Object[]} stack - Stack of unvisited nodes
+   * @returns {Object} - The target node
+   */
+  async dfs(grid, end, stack) {
+    // run as long as there are unvisited nodes
+    // or until target node has been found
+    while (stack.length != 0) {
+      var node = stack.pop();
+      // only examine nodes that have not been seen before
+      if (!node.visited) {
+        if (node.row == end.y &amp;&amp; node.col == end.x) {
+          return node;
+        }
+
+        node.visited = true;
+        // mark visited nodes in light red on the grid
+        await colorVisited(node);
+
+        // push other nodes to be considerated onto the stack
+        if (
+          node.row + 1 &lt; grid.length &amp;&amp;
+          grid[node.row + 1][node.col].type == "floor" &amp;&amp;
+          grid[node.row + 1][node.col].visited != true
+        ) {
+          // node below current node
+          stack.push(grid[node.row + 1][node.col]);
+          grid[node.row + 1][node.col].predecessor = {
+            col: node.col,
+            row: node.row,
+          };
+        }
+        if (
+          node.col - 1 >= 0 &amp;&amp;
+          grid[node.row][node.col - 1].type == "floor" &amp;&amp;
+          grid[node.row][node.col - 1].visited != true
+        ) {
+          // node left of current node
+          stack.push(grid[node.row][node.col - 1]);
+          grid[node.row][node.col - 1].predecessor = {
+            col: node.col,
+            row: node.row,
+          };
+        }
+        if (
+          node.row - 1 >= 0 &amp;&amp;
+          grid[node.row - 1][node.col].type == "floor" &amp;&amp;
+          grid[node.row - 1][node.col].visited != true
+        ) {
+          // node above the current node
+          stack.push(grid[node.row - 1][node.col]);
+          grid[node.row - 1][node.col].predecessor = {
+            col: node.col,
+            row: node.row,
+          };
+        }
+        if (
+          node.col + 1 &lt; grid[0].length &amp;&amp;
+          grid[node.row][node.col + 1].type == "floor" &amp;&amp;
+          grid[node.row][node.col + 1].visited != true
+        ) {
+          // node to the right of the current node
+          stack.push(grid[node.row][node.col + 1]);
+          grid[node.row][node.col + 1].predecessor = {
+            col: node.col,
+            row: node.row,
+          };
+        }
+      }
+    }
+  }
+
+  /**
+   * Reads predecessors starting from the target node and colors the path.
+   * @param {Object[][]} grid - 2d array of nodes representing the grid
+   * @param {Object} end - Row and column of the target node
+   */
+  async makePath(grid, pathStart) {
+    await timeout(500);
+    var list = [];
+    var v = pathStart;
+    list.unshift(v);
+    // step through predecessors until we hit the source node
+    while (v.predecessor != undefined) {
+      // color path red and add node to a list
+      await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);
+      v = grid[v.predecessor.row][v.predecessor.col];
+      list.unshift(v);
+    }
+    list.unshift(v);
+    // animate the stick figure
+    makeHimRun(list);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

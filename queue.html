@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Queue - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="datastructures.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container-fluid">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="datastructures.html">Data structures</a></li>
+            <li>Queue</li>
+          </ol>
+          <h2>Queue visualization</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-2">
+        <div class="container-fluid">
+          <div class="row mx-auto mb-2">
+            <div class="col-sm-2">
+              <button
+                class="btn btn-block btn-dark"
+                onclick="generateQueue()"
+                id="generate"
+              >
+                Generate random queue
+              </button>
+            </div>
+            <div class="col-sm-2 pl-0">
+              <div class="dropdown">
+                <button
+                  class="btn btn-dark btn-block dropdown-toggle"
+                  type="button"
+                  id="dropdownOp"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Select an operation
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownOp">
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(1)"
+                    type="button"
+                  >
+                    Enqueue element
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(2)"
+                    type="button"
+                  >
+                    Dequeue element
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(3)"
+                    type="button"
+                  >
+                    Peek
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="valInput" class="col-sm-3" hidden>
+              <form class="form-inline">
+                <div class="col-2">
+                  <label class="mr-2" for="data-val-input">Data</label>
+                </div>
+                <div class="col-10">
+                  <input
+                    type="text"
+                    class="form-control mx-auto w-100"
+                    id="data-val-input"
+                    placeholder="22"
+                  /><small id="data-error" class="red-text" hidden>
+                    Please select a number < 1000.
+                  </small>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-2">
+              <button
+                class="btn btn-block btn-danger red"
+                type="button"
+                id="startOp"
+                onclick="runOp()"
+              >
+                Go!
+              </button>
+            </div>
+            <div class="col-sm-5">
+              <div
+                class="alert alert-danger text-center my-0 py-2"
+                role="alert"
+                id="queueSizeError"
+                hidden
+              >
+                <div class="row">
+                  <div class="col-1">
+                    <i class="bx bx-error-circle"></i>
+                  </div>
+                  <div class="col-11">Please add an element first.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="data-container-big border-dark p-1 mb-0 mt-0 w-100">
+            <svg id="visu"></svg>
+          </div>
+          <div class="row mx-auto" id="queue-pseudocode">
+            <div class="col-sm-12 col-md-12 col-lg-4 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span class="comment w-100">-----------</span>
+                  <span class="comment w-100 mt-1">| ENQUEUE |</span>
+                  <span class="comment w-100 mt-1">-----------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Append the data to the end of the array.</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >&emsp;</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >TIME COMPLEXITY: O(1)</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span class="comment w-100">-----------</span>
+                  <span class="comment w-100 mt-1">| DEQUEUE |</span>
+                  <span class="comment w-100 mt-1">-----------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Remove the first element from the array and return it.</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >&emsp;</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >TIME COMPLEXITY: O(n)</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span class="comment w-100">--------</span>
+                  <span class="comment w-100 mt-1">| PEEK |</span>
+                  <span class="comment w-100 mt-1">--------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Return the first element in the queue without removing it.</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >&emsp;</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >TIME COMPLEXITY: O(1)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <!-- Queue Implementation -->
+    <script>
+      class Queue {
+        constructor() {
+          this.items = [];
+          this.size = 0;
+          this.front = 0;
+          this.rear = -1;
+        }
+
+        async enqueue(item) {
+          this.items.push(item);
+          this.size++;
+          this.rear++;
+          await updateQueueVisualization(this.items);
+          return item;
+        }
+
+        async dequeue() {
+          if (this.size === 0) {
+            return null;
+          }
+          
+          const item = this.items.shift();
+          this.size--;
+          this.rear--;
+          await updateQueueVisualization(this.items);
+          return item;
+        }
+
+        async peek() {
+          if (this.size === 0) {
+            return null;
+          }
+          
+          // Highlight the front element
+          await highlightFrontElement();
+          return this.items[0];
+        }
+
+        isEmpty() {
+          return this.size === 0;
+        }
+      }
+    </script>
+
+    <!-- Queue Visualization Scripts -->
+    <script>
+      const container = document.querySelector(".data-container");
+      var DELAY = 500;
+      var w = globalThis.screen.availWidth;
+      var h = 584;
+      var data_nodes = [];
+      var data_set = new Set();
+      var radius = 25;
+      var strokeWidth = "5px";
+      var queue = new Queue();
+      var operation = "enqueue";
+
+      function setDelay(delay) {
+        DELAY = delay;
+      }
+
+      var xScale = d3.scaleLinear().domain([0, w]).range([0, w]);
+      var yScale = d3.scaleLinear().domain([0, h]).range([0, h]);
+
+      var svg = d3.select("#visu");
+      svg.append("g").attr("id", "g-paths");
+
+      // Add arrow markers for queue direction
+      svg
+        .append("svg:defs")
+        .attr("id", "defs")
+        .append("svg:marker")
+        .attr("id", "triangle")
+        .attr("refX", 40)
+        .attr("refY", 9)
+        .attr("markerWidth", 40)
+        .attr("markerHeight", 40)
+        .attr("markerUnits", "userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 18 9 0 18 5 9")
+        .attr("id", "triangle-path")
+        .style("fill", "#171717");
+
+      // Text to display results
+      svg
+        .append("text")
+        .attr("id", "results-text")
+        .attr("y", "580")
+        .attr("x", "5")
+        .attr("font-size", "25px")
+        .attr("font-weight", "bold");
+
+      // Baseline for the queue
+      svg
+        .append("line")
+        .attr("x1", function (d, i) {
+          return 50;
+        })
+        .attr("y1", function (d, i) {
+          return h - 150;
+        })
+        .attr("x2", function (d, i) {
+          return w - 50;
+        })
+        .attr("y2", function (d, i) {
+          return h - 150;
+        })
+        .attr("stroke", "#171717")
+        .attr("stroke-width", "2px")
+        .attr("id", "baseline");
+
+      // Add front and rear labels
+      svg
+        .append("text")
+        .attr("id", "front-label")
+        .attr("x", 60)
+        .attr("y", h - 180)
+        .attr("font-size", "20px")
+        .attr("font-weight", "bold")
+        .text("FRONT");
+
+      svg
+        .append("text")
+        .attr("id", "rear-label")
+        .attr("x", w - 120)
+        .attr("y", h - 180)
+        .attr("font-size", "20px")
+        .attr("font-weight", "bold")
+        .text("REAR");
+
+      // Add direction arrow
+      svg
+        .append("line")
+        .attr("x1", 100)
+        .attr("y1", h - 100)
+        .attr("x2", w - 100)
+        .attr("y2", h - 100)
+        .attr("stroke", "#171717")
+        .attr("stroke-width", "2px")
+        .attr("marker-end", "url(#triangle)")
+        .attr("id", "direction-arrow");
+
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
+        );
+      }
+
+      async function generateQueue() {
+        $("#generate, #dropdownOp, #startOp").prop("disabled", true);
+        queue = new Queue();
+        data_nodes = [];
+        var ids = ["baseline", "results-text", "front-label", "rear-label", "direction-arrow", "defs"];
+
+        svg
+          .selectAll("*")
+          .filter(function (d, i) {
+            return !ids.includes(this.id);
+          })
+          .remove();
+
+        let rand = Math.round(Math.random() * 2 + 4);
+
+        for (let i = 0; i < rand; i++) {
+          let data = Math.round(Math.random() * 998 + 1);
+
+          while (data_set.has(data)) {
+            data = Math.round(Math.random() * 998 + 1);
+          }
+
+          data_set.add(data);
+          await queue.enqueue(data);
+        }
+        $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+      }
+
+      function setOperation(op) {
+        $("#queueSizeError").prop("hidden", true);
+        switch (op) {
+          case 1:
+            operation = "enqueue";
+            $("#dropdownOp").html("Enqueue element");
+            $("#valInput").prop("hidden", false);
+            break;
+          case 2:
+            operation = "dequeue";
+            $("#dropdownOp").html("Dequeue element");
+            $("#valInput").prop("hidden", true);
+            break;
+          case 3:
+            operation = "peek";
+            $("#dropdownOp").html("Peek");
+            $("#valInput").prop("hidden", true);
+            break;
+          default:
+            operation = "enqueue";
+            $("#dropdownOp").html("Enqueue element");
+            $("#valInput").prop("hidden", false);
+            break;
+        }
+      }
+
+      async function runOp() {
+        let error = false;
+        switch (operation) {
+          // --- ENQUEUE ---
+          case "enqueue":
+            $("#generate, #dropdownOp, #startOp").prop("disabled", true);
+            d3.select("#results-text").text("");
+            let data = !$("#data-val-input").val()
+              ? 22
+              : Number($("#data-val-input").val());
+
+            if (data > 999) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number < 1000.");
+              error = true;
+            } else if (queue.size > 8) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("The maximum size of the queue is 9.");
+              error = true;
+            } else {
+              $("#data-val-input").css("border-color", "");
+              $("#data-error").prop("hidden", true);
+            }
+            if (!error) {
+              data_set.add(data);
+              await queue.enqueue(data);
+            }
+            $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+            break;
+          // --- DEQUEUE ---
+          case "dequeue":
+            $("#generate, #dropdownOp, #startOp").prop("disabled", true);
+            d3.select("#results-text").text("");
+
+            if (queue.size == 0) {
+              $("#queueSizeError").prop("hidden", false);
+            } else {
+              let num = await queue.dequeue();
+              d3.select("#results-text").text(
+                "Dequeued " + num + " from the queue."
+              );
+            }
+            $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+            break;
+          // --- PEEK ---
+          case "peek":
+            $("#generate, #dropdownOp, #startOp").prop("disabled", true);
+            d3.select("#results-text").text("");
+            if (queue.size == 0) {
+              $("#queueSizeError").prop("hidden", false);
+            } else {
+              let num = await queue.peek();
+              d3.select("#results-text").text(
+                num + " is at the front of the queue."
+              );
+            }
+            $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+            break;
+          default:
+            break;
+        }
+      }
+
+      // Queue visualization update function
+      async function updateQueueVisualization(items) {
+        // Remove existing nodes
+        svg.selectAll("circle.queue-node").remove();
+        svg.selectAll("text.queue-text").remove();
+
+        // Calculate the positions for the nodes
+        const nodeWidth = 50;
+        const maxWidth = w - 100;
+        const spacing = Math.min(70, (maxWidth - nodeWidth) / (items.length > 0 ? items.length - 1 : 1));
+        
+        // Add new nodes
+        for (let i = 0; i < items.length; i++) {
+          // Create the node
+          const posX = 80 + i * spacing;
+          const posY = h - 150;
+          
+          // Animate the circle and text
+          const circle = svg.append("circle")
+            .attr("class", "queue-node")
+            .attr("cx", posX)
+            .attr("cy", posY)
+            .attr("r", 0)
+            .attr("fill", "steelblue")
+            .attr("stroke", "#171717")
+            .attr("stroke-width", "2px");
+          
+          circle.transition()
+            .duration(500)
+            .attr("r", radius);
+          
+          const text = svg.append("text")
+            .attr("class", "queue-text")
+            .attr("x", posX)
+            .attr("y", posY)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "central")
+            .attr("font-size", "16px")
+            .attr("fill", "white")
+            .attr("opacity", 0)
+            .text(items[i]);
+          
+          text.transition()
+            .duration(500)
+            .attr("opacity", 1);
+          
+          await timeout(100); // Small delay between adding nodes
+        }
+      }
+
+      // Highlight the front element for peek operation
+      async function highlightFrontElement() {
+        if (queue.size > 0) {
+          const frontNode = svg.selectAll("circle.queue-node").filter(function(d, i) { return i === 0; });
+          const originalColor = frontNode.attr("fill");
+          
+          frontNode.transition()
+            .duration(300)
+            .attr("fill", "#ff8800")
+            .attr("r", radius * 1.2);
+          
+          await timeout(1000);
+          
+          frontNode.transition()
+            .duration(300)
+            .attr("fill", originalColor)
+            .attr("r", radius);
+        }
+      }
+    </script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "584")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 584");
+      });
+    </script>
+  </body>
+</html>

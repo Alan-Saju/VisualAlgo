@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Pathfinding/astar_pf.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Pathfinding/astar_pf.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** Class for running the A* pathfinding algorithm */
+class AStar {
+  constructor() {}
+
+  /**
+   * Run the algorithm with the provided values.
+   * @param {Object[][]} grid - A 2d array representing the grid the algorithm runs on
+   * @param {Object} start - Row and column of the source node
+   * @param {Object} end - Row and column of the target node
+   */
+  async run(grid, start, end) {
+    // reset the grid so previous runs don't affect this one
+    resetGrid(grid);
+    // initialize the list containing the unvisited nodes and the
+    // starting point
+    var openSet = [];
+    var startingPoint = grid[start.y][start.x];
+    startingPoint.dist = 0;
+    startingPoint.fScore = this.h(startingPoint, end);
+    openSet.push(startingPoint);
+
+    // run as long as there are unexplored nodes or until target is found
+    while (!openSet.length == 0) {
+      var curr = this.findLowestFScore(openSet, end);
+      curr.visited = true;
+
+      await colorVisited(curr);
+
+      // the current node is the target node
+      // -> highlight path and break
+      if (curr.row == end.y &amp;&amp; curr.col == end.x) {
+        makePath(grid, end);
+        break;
+      }
+
+      var nbs = getNeighbours(grid, curr);
+
+      //examine every neighbour of the current node
+      for (const nb in nbs) {
+        var neighbour = nbs[nb];
+
+        // conditional operator evaluating to 'true' if neighbour is already in
+        // openSet, or 'false' if it isn't
+        var inOpenSet = this.isInOpenset(openSet, neighbour);
+
+        // skip all following steps if neighbour has been visited
+        if (neighbour.visited) {
+          continue;
+        }
+
+        var tentative_gScore =
+          curr.dist + (neighbour.type == "weight" ? 10 : 1);
+
+        // neighbour does not need update -> skip remaining steps
+        if (inOpenSet &amp;&amp; tentative_gScore >= nb.dist) {
+          continue;
+        }
+
+        // update neighbour and push it to openSet
+        neighbour.dist = tentative_gScore;
+        neighbour.predecessor = { col: curr.col, row: curr.row };
+        neighbour.fScore = neighbour.dist + this.h(neighbour, end);
+
+        if (!inOpenSet) {
+          openSet.push(neighbour);
+        }
+      }
+    }
+  }
+
+  /**
+   * Checks whether a given cell is in the open set.
+   * @param {Object[]} openSet - The open set
+   * @param {Object} neighbour - The cell to check
+   * @returns {boolean} - True if cell is in openSet, false else.
+   */
+  isInOpenset(openSet, neighbour) {
+    return openSet.findIndex(
+      (elem) => elem.x == neighbour.x &amp;&amp; elem.y == neighbour.y
+    ) == -1
+      ? false
+      : true;
+  }
+
+  /**
+   * Heuristic function for the A* algorithm. Calculates Manhattan distance.
+   * @param {Object} node - The current node
+   * @param {Object} end  - The target node
+   * @returns {number} - The Manhattan distance between node and end
+   */
+  h(node, end) {
+    // -> Manhattan distance = |x0-x1| + |y0-y1|
+    var manhDist = Math.abs(node.col - end.x) + Math.abs(node.row - end.y);
+    return manhDist;
+  }
+
+  /**
+   * Finds the node with the lowest fScore, removes it from the list
+   * and returns it.
+   * Takes into consideration raw heuristic distance should there be
+   * two nodes with the same fScore.
+   * @param {Object[]} q - List of all unvisited nodes
+   * @param {Object} end - The target node, needed for calculating heuristic distance
+   * @returns {Object} - The node with the lowest fScore
+   */
+  findLowestFScore(q, end) {
+    var closest = { fScore: Infinity };
+    var ind = 0;
+
+    for (let i = 0; i &lt; q.length; i++) {
+      if (closest.fScore > q[i].fScore) {
+        // fScore of the current node is smaller than the
+        // fScore of the closest node so far
+        // -> set it as closest and update index
+        closest = q[i];
+        ind = i;
+      } else if (this.h(closest, end) > this.h(q[i], end)) {
+        // fScores are equal
+        // -> compare raw heuristic distances
+        closest = q[i];
+        ind = i;
+      }
+    }
+    // remove closest node from the openSet
+    q.splice(ind, 1);
+    return closest;
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataStructuresHelperFunctions.html">DataStructuresHelperFunctions</a></li><li><a href="module-DoublyLinkedListAnimation.html">DoublyLinkedListAnimation</a></li><li><a href="module-DSAnimationHelperFunctions.html">DSAnimationHelperFunctions</a></li><li><a href="module-GraphHelperFunctions.html">GraphHelperFunctions</a></li><li><a href="module-HashTableAnimation.html">HashTableAnimation</a></li><li><a href="module-LinkedListAnimation.html">LinkedListAnimation</a></li><li><a href="module-MazeGenerationHelperFunctions.html">MazeGenerationHelperFunctions</a></li><li><a href="module-PathfindingHelperFunctions.html">PathfindingHelperFunctions</a></li><li><a href="module-StackAnimation.html">StackAnimation</a></li></ul><h3>Classes</h3><ul><li><a href="AStar.html">AStar</a></li><li><a href="BFS.html">BFS</a></li><li><a href="BinaryTreeGenerator.html">BinaryTreeGenerator</a></li><li><a href="DFS.html">DFS</a></li><li><a href="Dijkstras.html">Dijkstras</a></li><li><a href="DoublyLinkedList.html">DoublyLinkedList</a></li><li><a href="GrowingTree.html">GrowingTree</a></li><li><a href="HashTable.html">HashTable</a></li><li><a href="LinkedList.html">LinkedList</a></li><li><a href="ListNode.html">ListNode</a></li><li><a href="RecursiveDFS.html">RecursiveDFS</a></li><li><a href="Sidewinder.html">Sidewinder</a></li><li><a href="Stack.html">Stack</a></li><li><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li><a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a></li><li><a href="WeightedDirectedGraph.html">WeightedDirectedGraph</a></li><li><a href="WeightedUndirectedGraph.html">WeightedUndirectedGraph</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Fri Oct 16 2020 21:52:31 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

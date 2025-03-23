@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Linked list - AlgoVis.io</title>
+    <meta
+      content="AlgoVis is an online algorithm visualization tool."
+      name="description"
+    />
+    <meta content="algorithm visualization tool online" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+<!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-inner-pages">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="btn back-button mr-4" href="datastructures.html"
+          ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
+          Back</a
+        >
+        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container-fluid">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="datastructures.html">Data structures</a></li>
+            <li>Linked list</li>
+          </ol>
+          <h2>Linked list visualization</h2>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <section class="inner-page pt-2">
+        <div class="container-fluid">
+          <div class="row mx-auto mb-2">
+            <div class="col-sm-2 pl-0">
+              <button
+                class="btn btn-block btn-dark"
+                onclick="generateLinkedList()"
+                id="generate"
+              >
+                Generate random list
+              </button>
+            </div>
+            <div class="col-sm-2 pl-0">
+              <div class="dropdown">
+                <button
+                  class="btn btn-dark btn-block dropdown-toggle"
+                  type="button"
+                  id="dropdownOp"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Select an operation
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownOp">
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(1)"
+                    type="button"
+                  >
+                    Insert element
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(2)"
+                    type="button"
+                  >
+                    Remove element
+                  </button>
+                  <button
+                    class="dropdown-item"
+                    onclick="setOperation(3)"
+                    type="button"
+                  >
+                    Search element
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="posInput" class="col-sm-3 pl-0" hidden>
+              <form class="form-inline">
+                <div class="col-5">
+                  <label class="mr-2" for="data-pos-input" id="pos-label"
+                    >Position (0..N)</label
+                  >
+                </div>
+                <div class="col-7">
+                  <input
+                    type="number"
+                    class="form-control mx-auto w-100"
+                    id="data-pos-input"
+                    placeholder="0"
+                  /><small id="pos-error" class="red-text" hidden
+                    >Please select an index from X to Y.</small
+                  >
+                </div>
+              </form>
+            </div>
+            <div id="valInput" class="col-sm-3 pl-0" hidden>
+              <form class="form-inline">
+                <div class="col-2">
+                  <label class="mr-2" for="data-val-input">Data:</label>
+                </div>
+                <div class="col-10">
+                  <input
+                    type="number"
+                    class="form-control mx-auto w-100"
+                    id="data-val-input"
+                    placeholder="22"
+                  /><small id="data-error" class="red-text" hidden>
+                    Please select a number < 100.
+                  </small>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-2 pl-0">
+              <button
+                class="btn btn-block btn-danger red"
+                type="button"
+                id="startOp"
+                onclick="runOp()"
+              >
+                Go!
+              </button>
+            </div>
+          </div>
+          <div class="data-container border-dark p-1 mb-0 mt-0 w-100">
+            <svg id="visu"></svg>
+          </div>
+          <div class="row mx-auto" id="remove-pseudocode" hidden>
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span class="op">switch</span>(position)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;0:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  &emsp;&emsp;&emsp;&emsp; head = head.<span class="var"
+                    >next</span
+                  >
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;list.length - 1:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  &emsp;&emsp;&emsp;&emsp; current = head
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  &emsp;&emsp;&emsp;&emsp; index = 0
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(current.
+                  <span class="var">next</span>
+                  != tail)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                  <span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 9">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 10">
+                  &emsp;&emsp;&emsp;&emsp; current.<span class="var">next</span>
+                  = none
+                </div>
+                <div class="row ml-auto mr-auto mt-1 11">
+                  &emsp;&emsp;&emsp;&emsp; tail = current
+                </div>
+                <div class="row ml-auto mr-auto mt-1 12">
+                  &emsp;&emsp; <span class="op">default</span>:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 13">
+                  &emsp;&emsp;&emsp;&emsp; current = head
+                </div>
+                <div class="row ml-auto mr-auto mt-1 14">
+                  &emsp;&emsp;&emsp;&emsp; index = 0
+                </div>
+                <div class="row ml-auto mr-auto mt-1 15">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;
+                  <span class="op">while</span>(index + 1 != position)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 16">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                  <span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 17">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; index += 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 18">
+                  &emsp;&emsp;&emsp;&emsp; nextNext = current.<span class="var"
+                    >next</span
+                  >.<span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 19">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;current.
+                  <span class="var">next</span> = nextNext
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">---------------------</span>
+                  <span class="comment w-100 mt-1">| SHORT EXPLANATION |</span>
+                  <span class="comment w-100 mt-1">---------------------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Determine which node will be removed</span
+                  >
+                  <span class="comment w-100 mt-1">
+                    - if it's the head, just update the head pointer
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >- if it's the tail, traverse the list and set the sucessor
+                    of the node before the tail to none</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >2. If it gets removed from index N, traverse the list up to
+                    node N-1 and get the node after the node it points to
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >3. Point the 'next' pointer of the node at N-1 to the node
+                    obtained in step 2</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">Time complexity:</span>
+                  <span class="comment w-100 mt-1">Remove head: O(1)</span>
+                  <span class="comment w-100 mt-1">Remove tail: O(n)</span>
+                  <span class="comment w-100 mt-1"
+                    >Remove from index: O(n)</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mx-auto" id="insert-pseudocode" hidden>
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">
+                  <span class="op">switch</span>(position)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 2">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;0:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  &emsp;&emsp;&emsp;&emsp; node.<span class="var">next</span> =
+                  head
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  &emsp;&emsp;&emsp;&emsp; head = node
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  &emsp;&emsp;<span class="op">case</span>&emsp;list.length:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  &emsp;&emsp;&emsp;&emsp; tail.<span class="var">next</span> =
+                  node
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  &emsp;&emsp;&emsp;&emsp; tail = node
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  &emsp;&emsp;<span class="op">default</span>:
+                </div>
+                <div class="row ml-auto mr-auto mt-1 9">
+                  &emsp;&emsp;&emsp;&emsp; current = head
+                </div>
+                <div class="row ml-auto mr-auto mt-1 10">
+                  &emsp;&emsp;&emsp;&emsp; <span class="op">for</span>(i = 0 to
+                  position - 1)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 11">
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; current = current.
+                  <span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 12">
+                  &emsp;&emsp;&emsp;&emsp; node.<span class="var">next</span> =
+                  current.<span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 13">
+                  &emsp;&emsp;&emsp;&emsp; current.<span class="var">next</span>
+                  = node
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">SHORT EXPLANATION</span>
+                  <span class="comment w-100 mt-1">-----------------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Determine where the new node will be inserted</span
+                  >
+                  <span class="comment w-100 mt-1">
+                    - if it becomes the new head, overwrite the current head
+                    after saving it as the node's successor
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >- if it's the new tail, set it as the successor of the
+                    current tail</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >2. If it gets inserted at index N, traverse the list up to
+                    node N-1 and get the node it points to
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >3. Point the 'next' pointer of the new node to the node
+                    obtained in step 2</span
+                  >
+                  <span class="comment w-100 mt-1"
+                    >4. Point the 'next' pointer of the node at index N-1 to the
+                    new node</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp;</span>
+                  <span class="comment w-100 mt-1">Time complexity:</span>
+                  <span class="comment w-100 mt-1">Insert as head: O(1)</span>
+                  <span class="comment w-100 mt-1"
+                    >Insert as tail: O(1) if you keep pointer to the tail, O(n)
+                    else</span
+                  >
+                  <span class="comment w-100 mt-1">Insert at index: O(n)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mx-auto" id="search-pseudocode" hidden>
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0 mr-0">
+              <div class="ide w-100">
+                <div class="row ml-auto mr-auto 1">current = head</div>
+                <div class="row ml-auto mr-auto mt-1 2">index = 0</div>
+                <div class="row ml-auto mr-auto mt-1 3">
+                  <span class="op">while</span>(current.data != data)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 4">
+                  &emsp;&emsp; <span class="op">if</span>(current.
+                  <span class="var">next</span>&emsp;== none)
+                </div>
+                <div class="row ml-auto mr-auto mt-1 5">
+                  &emsp;&emsp;&emsp;&emsp;
+                  <span class="op">return</span>&emsp;-1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 6">
+                  &emsp; current = current.<span class="var">next</span>
+                </div>
+                <div class="row ml-auto mr-auto mt-1 7">
+                  &emsp;&emsp;index += 1
+                </div>
+                <div class="row ml-auto mr-auto mt-1 8">
+                  <span class="op">return</span>&emsp;index
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 ml-0 px-0">
+              <div class="ide w-100 pl-0">
+                <div class="row ml-auto mr-auto">
+                  <span class="comment w-100">SHORT EXPLANATION</span>
+                  <span class="comment w-100 mt-1">-----------------</span>
+                  <span class="comment w-100 mt-1"
+                    >1. Traverse the list until element is found or the whole
+                    list has been traversed</span
+                  >
+                  <span class="comment w-100 mt-1">
+                    - if element was found, return index
+                  </span>
+                  <span class="comment w-100 mt-1"
+                    >- else return not_found</span
+                  >
+                  <span class="comment w-100 mt-1">&emsp; </span>
+                  <span class="comment w-100 mt-1">Time complexity</span>
+                  <span class="comment w-100 mt-1">Find element: O(n)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="assets/js/Data_structures/linked_list.js"></script>
+    <script src="assets/js/Data_structures/anim/anim_ll.js"></script>
+    <script src="assets/js/Data_structures/anim/anim_helpers.js"></script>
+    <script src="assets/js/Data_structures/ds_helpers.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      const container = document.querySelector(".data-container");
+      var DELAY = 500;
+      var w = globalThis.screen.availWidth;
+      var h = 370;
+      var data_nodes = [];
+      var data_set = new Set();
+      var radius = 25;
+      var strokeWidth = "5px";
+      var list = new LinkedList();
+
+      function setDelay(delay) {
+        DELAY = delay;
+      }
+
+      var xScale = d3.scaleLinear().domain([0, w]).range([0, w]);
+
+      var yScale = d3.scaleLinear().domain([0, h]).range([0, h]);
+
+      var svg = d3.select("#visu");
+      svg.append("g").attr("id", "g-paths");
+
+      svg
+        .append("svg:defs")
+        .attr("id", "defs")
+        .append("svg:marker")
+        .attr("id", "triangle")
+        .attr("refX", 40)
+        .attr("refY", 9)
+        .attr("markerWidth", 40)
+        .attr("markerHeight", 40)
+        .attr("markerUnits", "userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 18 9 0 18 5 9")
+        .attr("id", "triangle-path")
+        .style("fill", "#171717");
+      svg
+        .append("text")
+        .attr("id", "results-text")
+        .attr("y", "370")
+        .attr("x", "5")
+        .attr("font-size", "25px")
+        .attr("font-weight", "bold");
+
+     async function highlightCode(elementClass, delay) {
+        $(".code-highlight").removeClass("code-highlight");
+        $(`.${elementClass}`).addClass("code-highlight");
+        await timeout(delay);
+      }
+
+      async function timeout(delay) {
+        await new Promise((resolve) =>
+          setTimeout(() => {
+            resolve();
+          }, delay)
+        );
+      }
+
+      async function generateLinkedList() {
+        $("#generate, #dropdownOp, #startOp").prop("disabled", true);
+        list = new LinkedList();
+        data_set = new Set();
+        data_nodes = [];
+        var ids = [
+          "g-paths",
+          "defs",
+          "triangle",
+          "triangle-path",
+          "triangle-red",
+          "triangle-path-red",
+          "results-text",
+        ];
+
+        svg
+          .selectAll("*")
+          .filter(function (d, i) {
+            return !ids.includes(this.id);
+          })
+          .remove();
+
+        let rand = Math.round(Math.random() * 2 + 4);
+
+        for (let i = 0; i < rand; i++) {
+          let data = Math.round(Math.random() * 98 + 1);
+
+          while (data_set.has(data)) {
+            data = Math.round(Math.random() * 98 + 1);
+          }
+
+          data_set.add(data);
+
+          await list.insert(data, i);
+        }
+        $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+        await highlightCode(0);
+      }
+
+      function setOperation(op) {
+        switch (op) {
+          case 1:
+            operation = "insert";
+            $("#dropdownOp").html("Insert element");
+            $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
+            $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
+            $("#pos-label").html("Position (0..N)");
+            break;
+          case 2:
+            operation = "remove";
+            $("#dropdownOp").html("Remove element");
+            $("#posInput, #remove-pseudocode").prop("hidden", false);
+            $("#valInput, #insert-pseudocode, #search-pseudocode").prop(
+              "hidden",
+              true
+            );
+            $("#pos-label").html("Position (0..N-1)");
+            break;
+          case 3:
+            operation = "search";
+            $("#dropdownOp").html("Search element");
+            $("#posInput, #insert-pseudocode, #remove-pseudocode").prop(
+              "hidden",
+              true
+            );
+            $("#valInput, #search-pseudocode").prop("hidden", false);
+            break;
+
+          default:
+            operation = "insert";
+            $("#dropdownOp").html("Insert element");
+            $("#posInput, #valInput, #insert-pseudocode").prop("hidden", false);
+            $("#remove-pseudocode, #search-pseudocode").prop("hidden", true);
+            break;
+        }
+      }
+
+      async function runOp() {
+        $("#generate, #dropdownOp, #startOp").prop("disabled", true);
+        switch (operation) {
+          //--- INSERT ---
+          case "insert":
+            d3.select("#results-text").text("");
+            let pos = !$("#data-pos-input").val()
+              ? 0
+              : Number($("#data-pos-input").val());
+            let error = false;
+
+            if (pos > list.length) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text =
+                list.length == 0
+                  ? "Please generate a linked list first, or add a node to position 0."
+                  : "Please select an index from 0 to " + list.length + ".";
+              $("#pos-error").html(text);
+              error = true;
+            } else if (pos < 0) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text = "Indices can't be negative.";
+              $("#pos-error").html(text);
+              error = true;
+            } else {
+              $("#data-pos-input").css("border-color", "");
+              $("#pos-error").prop("hidden", true);
+            }
+
+            let data = !$("#data-val-input").val()
+              ? 22
+              : Number($("#data-val-input").val());
+
+            if (data > 99) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number < 100.");
+              error = true;
+            } else if (data_set.has(data)) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html(
+                "Please select a number that's not already in the list."
+              );
+              error = true;
+            } else if (data < -9) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number > -10.");
+              error = true;
+            } else if (list.length == 10) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("The maximum size of the list is 10.");
+              error = true;
+            } else {
+              $("#data-val-input").css("border-color", "");
+              $("#data-error").prop("hidden", true);
+            }
+            if (!error) {
+              data_set.add(data);
+              await list.insert(data, pos);
+              await highlightCode(0);
+            }
+            break;
+          //--- REMOVE ---
+          case "remove":
+            d3.select("#results-text").text("");
+            let index = !$("#data-pos-input").val()
+              ? 0
+              : Number($("#data-pos-input").val());
+
+            if (index > list.length - 1) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text =
+                list.length == 0
+                  ? "Please generate a linked list first, or add a node to position 0."
+                  : "Please select an index from 0 to " +
+                    (list.length - 1) +
+                    ".";
+              $("#pos-error").html(text);
+            } else if (index < 0) {
+              $("#data-pos-input").css("border-color", "red");
+              $("#pos-error").prop("hidden", false);
+              let text = "Indices can't be negative.";
+              $("#pos-error").html(text);
+            } else {
+              $("#data-pos-input").css("border-color", "");
+              $("#pos-error").prop("hidden", true);
+              await list.remove(index);
+              await highlightCode(0);
+            }
+            break;
+          //--- SEARCH ---
+          case "search":
+            d3.select("#results-text").text("");
+            let find = !$("#data-val-input").val()
+              ? 22
+              : Number($("#data-val-input").val());
+
+            if (find > 99) {
+              $("#data-val-input").css("border-color", "red");
+              $("#data-error").prop("hidden", false);
+              $("#data-error").html("Please select a number < 100.");
+            } else {
+              $("#data-val-input").css("border-color", "");
+              $("#data-error").prop("hidden", true);
+              let index = await list.search(find);
+              await highlightCode(0);
+              if (index >= 0) {
+                d3.select("#results-text").text(
+                  "Found element " + find + " at index " + index + "."
+                );
+              } else {
+                d3.select("#results-text").text(
+                  "Did not find element " + find + " in list."
+                );
+              }
+            }
+            break;
+
+          default:
+            break;
+        }
+        $("#generate, #dropdownOp, #startOp").prop("disabled", false);
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        d3.select("#visu")
+          .attr("width", "100%")
+          .attr("height", "370")
+          .attr("viewBox", "0 0 " + globalThis.screen.availWidth + " 370");
+      });
+    </script>
+  </body>
+</html>
