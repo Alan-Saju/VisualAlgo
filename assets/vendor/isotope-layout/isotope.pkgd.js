@@ -445,7 +445,7 @@ function getSize( elem ) {
 
   var isBorderBoxSizeOuter = isBorderBox && isBoxSizeOuter;
 
-  // overwrite width and height if we can get it from style
+  // overwrite width and height if We  can get it from style
   var styleWidth = getStyleSize( style.width );
   if ( styleWidth !== false ) {
     size.width = styleWidth +
@@ -663,7 +663,7 @@ utils.filterFindElements = function( elems, selector ) {
       ffElems.push( elem );
       return;
     }
-    // filter & find items if we have a selector
+    // filter & find items if We  have a selector
     // filter
     if ( matchesSelector( elem, selector ) ) {
       ffElems.push( elem );
@@ -1136,7 +1136,7 @@ proto.onotransitionend = function( event ) {
   this.ontransitionend( event );
 };
 
-// properties that I munge to make my life easier
+// properties that Wemunge to make my life easier
 var dashedVendorProperties = {
   '-webkit-transform': 'transform'
 };
@@ -2444,7 +2444,7 @@ return Item;
     var outerSize = 'outer' + size;
     // columnWidth / outerWidth // rowHeight / outerHeight
     this._getMeasurement( segmentName, outerSize );
-    // got rowHeight or columnWidth, we can chill
+    // got rowHeight or columnWidth, We  can chill
     if ( this[ segmentName ] ) {
       return;
     }
@@ -3276,7 +3276,7 @@ var trim = String.prototype.trim ?
 
   // ----- munge sorter ----- //
 
-  // encapsulate this, as we just need mungeSorter
+  // encapsulate this, as We  just need mungeSorter
   // other functions in here are just for munging
   var mungeSorter = ( function() {
     // add a magic layer to sorters for convienent shorthands

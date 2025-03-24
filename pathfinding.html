@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Pathfinding - AlgoVis.io</title>
+    <title>Pathfinding - VisualAlgo</title>
     <meta
-      content="AlgoVis is an online algorithm visualization tool."
+      content="VisualAlgo is an online algorithm visualization tool."
       name="description"
     />
     <meta content="algorithm visualization tool online" name="keywords" />
@@ -53,7 +53,7 @@
           ><i class="bx bx-arrow-back white-text" aria-hidden="true"></i>
           Back</a
         >
-        <h1 class="logo mr-auto"><a href="index.html">Algovis.io</a></h1>
+        <h1 class="logo mr-auto"><a href="index.html">VisualAlgo</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -125,50 +125,6 @@
                       type="button"
                     >
                       Dijkstra's algorithm
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="dropdown">
-                  <button
-                    class="btn btn-block btn-dark dropdown-toggle"
-                    type="button"
-                    id="dropdownGen"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Generate Maze
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownGen">
-                    <button
-                      class="dropdown-item"
-                      type="button"
-                      onclick='generateMaze("recDFS")'
-                    >
-                      Recursive DFS
-                    </button>
-                    <button
-                      class="dropdown-item"
-                      type="button"
-                      onclick='generateMaze("growing")'
-                    >
-                      Growing tree algorithm
-                    </button>
-                    <button
-                      class="dropdown-item"
-                      type="button"
-                      onclick='generateMaze("binTree")'
-                    >
-                      Binary tree generator
-                    </button>
-                    <button
-                      class="dropdown-item"
-                      type="button"
-                      onclick='generateMaze("side")'
-                    >
-                      Sidewinder algorithm
                     </button>
                   </div>
                 </div>
@@ -305,7 +261,7 @@
               <br /><br />
               The original algorithm Dijkstra created finds the shortest path
               from a single starting point to a single target. This is the
-              variant I implemented here. Other variations of Dijkstra's
+              variant Weimplemented here. Other variations of Dijkstra's
               algorithm find the shortest path from the source node to every
               other node in the graph, thus creating a shortest-path-tree.
               <br /><br />
@@ -481,7 +437,7 @@
             $("#dropdownAlgo").text("A*");
             $("#startPf").text("Visualize A*");
             $(".algo").html("A* algorithm");
-            document.title = "A* - AlgoVis.io";
+            document.title = "A* - VisualAlgo";
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
@@ -495,7 +451,7 @@
             $("#dropdownAlgo").text("BFS");
             $("#startPf").text("Visualize BFS");
             $(".algo").html("Breadth-first search");
-            document.title = "Breadth-first search - AlgoVis.io";
+            document.title = "Breadth-first search - VisualAlgo";
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
@@ -509,7 +465,7 @@
             $("#dropdownAlgo").text("DFS");
             $("#startPf").text("Visualize DFS");
             $(".algo").html("Depth-first search");
-            document.title = "Depth-first search - AlgoVis.io";
+            document.title = "Depth-first search - VisualAlgo";
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", true);
             $(".alert-warning").prop("hidden", false);
@@ -523,7 +479,7 @@
             $("#dropdownAlgo").text("Dijkstra's algorithm");
             $("#startPf").text("Visualize Dijkstra's");
             $(".algo").html("Dijkstra's algorithm");
-            document.title = "Dijkstra's algorithm - AlgoVis.io";
+            document.title = "Dijkstra's algorithm - VisualAlgo";
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);
@@ -537,7 +493,7 @@
             $("#dropdownAlgo").text("A*");
             $("#startPf").text("Visualize A*");
             $(".algo").html("A* algorithm");
-            document.title = "A* - AlgoVis.io";
+            document.title = "A* - VisualAlgo";
             $("#algowarning").prop("hidden", true);
             $(".alert-success").prop("hidden", false);
             $(".alert-warning").prop("hidden", true);

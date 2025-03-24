@@ -230,7 +230,7 @@
 
       if (element instanceof ShadowRoot) {
         return element;
-      } // when we don't find a shadow root
+      } // when We  don't find a shadow root
 
 
       if (!element.parentNode) {
@@ -886,10 +886,10 @@
           // If it's a touch-enabled device, mouseenter/leave are fired as
           // part of the mouse compatibility events on first tap - the carousel
           // would stop cycling until user tapped out of it;
-          // here, we listen for touchend, explicitly pause the carousel
-          // (as if it's the second time we tap on it, mouseenter compat event
+          // here, We  listen for touchend, explicitly pause the carousel
+          // (as if it's the second time We  tap on it, mouseenter compat event
           // is NOT fired) and after a timeout (to allow for mouse compatibility
-          // events to fire) we explicitly restart cycling
+          // events to fire) We  explicitly restart cycling
           _this3.pause();
 
           if (_this3.touchTimeout) {
@@ -1035,7 +1035,7 @@
       }
 
       if (!activeElement || !nextElement) {
-        // Some weirdness is happening, so we bail
+        // Some weirdness is happening, so We  bail
         return;
       }
 
@@ -1702,7 +1702,7 @@
         }
 
         this._popper = new Popper(referenceElement, this._menu, this._getPopperConfig());
-      } // If this is a touch-enabled device we add extra
+      } // If this is a touch-enabled device We  add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
@@ -1847,7 +1847,7 @@
             boundariesElement: this._config.boundary
           }
         }
-      }; // Disable Popper.js if we have a static display
+      }; // Disable Popper.js if We  have a static display
 
       if (this._config.display === 'static') {
         popperConfig.modifiers.applyStyle = {
@@ -1918,8 +1918,8 @@
 
         if (hideEvent.isDefaultPrevented()) {
           continue;
-        } // If this is a touch-enabled device we remove the extra
-        // empty mouseover listeners we added for iOS support
+        } // If this is a touch-enabled device We  remove the extra
+        // empty mouseover listeners We  added for iOS support
 
 
         if ('ontouchstart' in document.documentElement) {
@@ -3001,7 +3001,7 @@
 
         $(this.element).trigger(this.constructor.Event.INSERTED);
         this._popper = new Popper(this.element, tip, this._getPopperConfig(attachment));
-        $(tip).addClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we add extra
+        $(tip).addClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device We  add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
@@ -3065,8 +3065,8 @@
         return;
       }
 
-      $(tip).removeClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we remove the extra
-      // empty mouseover listeners we added for iOS support
+      $(tip).removeClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device We  remove the extra
+      // empty mouseover listeners We  added for iOS support
 
       if ('ontouchstart' in document.documentElement) {
         $(document.body).children().off('mouseover', null, $.noop);
@@ -3562,7 +3562,7 @@
     };
 
     _proto.setContent = function setContent() {
-      var $tip = $(this.getTipElement()); // We use append for html objects to maintain js events
+      var $tip = $(this.getTipElement()); // We  use append for html objects to maintain js events
 
       this.setElementContent($tip.find(SELECTOR_TITLE), this.getTitle());
 

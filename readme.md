@@ -1,9 +1,9 @@
 <h1 align="center"> 
  <img src="https://i.imgur.com/afQhzn9.png"> <br>
-AlgoVis<span>.</span>io
+VisualAlgo<span>.</span>io
 </h1>
-<h4 align="center">AlgoVis is a passion project aimed at helping everybody understand algorithms a little better by using easy to understand visualizations, concise explanations and dynamic code highlighting showing exactly what's happening.</h4>
-<p align="center"><img src="https://img.shields.io/website?down_color=%23CC1616&down_message=offline&up_message=live&url=https%3A%2F%2Ftobinatore.github.io%2Falgovis%2F"> <img src="https://img.shields.io/github/v/release/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/last-commit/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/github/repo-size/tobinatore/algovis?color=%23CC1616"> <img src="https://img.shields.io/codeclimate/maintainability/tobinatore/algovis"> </p>
+<h4 align="center">VisualAlgo is a passion project aimed at helping everybody understand algorithms a little better by using easy to understand visualizations, concise explanations and dynamic code highlighting showing exactly what's happening.</h4>
+<p align="center"><img src="https://img.shields.io/website?down_color=%23CC1616&down_message=offline&up_message=live&url=https%3A%2F%2Ftobinatore.github.io%2FVisualAlgo%2F"> <img src="https://img.shields.io/github/v/release/tobinatore/VisualAlgo?color=%23CC1616"> <img src="https://img.shields.io/github/last-commit/tobinatore/VisualAlgo?color=%23CC1616"> <img src="https://img.shields.io/github/repo-size/tobinatore/VisualAlgo?color=%23CC1616"> <img src="https://img.shields.io/codeclimate/maintainability/tobinatore/VisualAlgo"> </p>
 
 ## :bookmark_tabs: Table of Contents <!-- omit in toc -->
 
@@ -27,13 +27,13 @@ AlgoVis<span>.</span>io
 
 ### :wave: Introduction
 
-AlgoVis<span>.</span>io is an online algorithm visualization tool written using HTML, CSS, JS, jQuery and d3.js.
+VisualAlgo<span>.</span>io is an online algorithm visualization tool written using HTML, CSS, JS, jQuery and d3.js.
 
 ### :desktop_computer: Setup
 
-You do not need to download / clone / fork / whatever anything to test the website, as a live version can be found [on my GithubPages portfolio](https://tobinatore.github.io/algovis/)!
+You do not need to download / clone / fork / whatever anything to test the website, as a live version can be found [on my GithubPages portfolio](https://tobinatore.github.io/VisualAlgo/)!
 
-If you wish to have a local copy for testing all you need to do is either fork and clone the repository if you want to contribute or download one of the releases found [here](https://github.com/tobinatore/algovis/releases) if you just want to play around with it. There are no complicated setup steps to get it up and running. You won't need a webserver as I'm not using php or any other server-side languages in this project.
+If you wish to have a local copy for testing all you need to do is either fork and clone the repository if you want to contribute or download one of the releases found [here](https://github.com/tobinatore/VisualAlgo/releases) if you just want to play around with it. There are no complicated setup steps to get it up and running. You won't need a webserver as I'm not using php or any other server-side languages in this project.
 
 ### :chart_with_upwards_trend: Algorithms
 

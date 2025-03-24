@@ -104,7 +104,7 @@ class DFS {
     var list = [];
     var v = pathStart;
     list.unshift(v);
-    // step through predecessors until we hit the source node
+    // step through predecessors until We  hit the source node
     while (v.predecessor != undefined) {
       // color path red and add node to a list
       await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);

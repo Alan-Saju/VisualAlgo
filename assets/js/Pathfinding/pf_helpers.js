@@ -88,7 +88,7 @@ async function makePath(grid, end) {
   var list = [];
   var v = grid[end.y][end.x];
   list.unshift(v);
-  // step through the predecessors until we hit the start node.
+  // step through the predecessors until We  hit the start node.
   // color every node on the way and save the path in a list.
   while (v.predecessor != undefined) {
     await colorBlock("#node-" + v.row + "-" + v.col, "#cc1616", 250, 15);

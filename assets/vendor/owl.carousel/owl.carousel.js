@@ -2632,7 +2632,7 @@
 		/**
 		 * Depending on the state of the plugin, this variable contains either
 		 * the start time of the timer or the current timer value if it's
-		 * paused. Since we start in a paused state we initialize the timer
+		 * paused. Since We  start in a paused state We  initialize the timer
 		 * value.
 		 * @type {Number}
 		 */

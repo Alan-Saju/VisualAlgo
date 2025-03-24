@@ -229,7 +229,7 @@
 
       if (element instanceof ShadowRoot) {
         return element;
-      } // when we don't find a shadow root
+      } // when We  don't find a shadow root
 
 
       if (!element.parentNode) {
@@ -885,10 +885,10 @@
           // If it's a touch-enabled device, mouseenter/leave are fired as
           // part of the mouse compatibility events on first tap - the carousel
           // would stop cycling until user tapped out of it;
-          // here, we listen for touchend, explicitly pause the carousel
-          // (as if it's the second time we tap on it, mouseenter compat event
+          // here, We  listen for touchend, explicitly pause the carousel
+          // (as if it's the second time We  tap on it, mouseenter compat event
           // is NOT fired) and after a timeout (to allow for mouse compatibility
-          // events to fire) we explicitly restart cycling
+          // events to fire) We  explicitly restart cycling
           _this3.pause();
 
           if (_this3.touchTimeout) {
@@ -1034,7 +1034,7 @@
       }
 
       if (!activeElement || !nextElement) {
-        // Some weirdness is happening, so we bail
+        // Some weirdness is happening, so We  bail
         return;
       }
 
@@ -1758,7 +1758,7 @@
     }
 
     // .offsetParent will return the closest TH, TD or TABLE in case
-    // no offsetParent is present, I hate this job...
+    // no offsetParent is present, Wehate this job...
     if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
       return getOffsetParent(offsetParent);
     }
@@ -1804,7 +1804,7 @@
       return document.documentElement;
     }
 
-    // Here we make sure to give as "start" the element that comes first in the DOM
+    // Here We  make sure to give as "start" the element that comes first in the DOM
     var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
     var start = order ? element1 : element2;
     var end = order ? element2 : element1;
@@ -2024,8 +2024,8 @@
     var horizScrollbar = element.offsetWidth - width;
     var vertScrollbar = element.offsetHeight - height;
 
-    // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
-    // we make this check conditional for performance reasons
+    // if an hypothetical scrollbar is detected, We  must be sure it's not a `border`
+    // We  make this check conditional for performance reasons
     if (horizScrollbar || vertScrollbar) {
       var styles = getStyleComputedProperty(element);
       horizScrollbar -= getBordersSize(styles, 'x');
@@ -2051,7 +2051,7 @@
     var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
     var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
 
-    // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+    // In cases where the parent is fixed, We  must ignore negative scroll in offset calc
     if (fixedPosition && isHTML) {
       parentRect.top = Math.max(parentRect.top, 0);
       parentRect.left = Math.max(parentRect.left, 0);
@@ -2066,7 +2066,7 @@
     offsets.marginLeft = 0;
 
     // Subtract margins of documentElement in case it's being used as parent
-    // we do this only on HTML because it's the only element that behaves
+    // We  do this only on HTML because it's the only element that behaves
     // differently when margins are applied to it. The margins are included in
     // the box of the documentElement, in the other cases not.
     if (!isIE10 && isHTML) {
@@ -2078,7 +2078,7 @@
       offsets.left -= borderLeftWidth - marginLeft;
       offsets.right -= borderLeftWidth - marginLeft;
 
-      // Attach marginTop and marginLeft because in some circumstances we may need them
+      // Attach marginTop and marginLeft because in some circumstances We  may need them
       offsets.marginTop = marginTop;
       offsets.marginLeft = marginLeft;
     }
@@ -2192,7 +2192,7 @@
 
       var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
 
-      // In case of HTML, we need a different computation
+      // In case of HTML, We  need a different computation
       if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
         var _getWindowSizes = getWindowSizes(popper.ownerDocument),
             height = _getWindowSizes.height,
@@ -2358,7 +2358,7 @@
       height: popperRect.height
     };
 
-    // depending by the popper placement we have to compute its offsets slightly differently
+    // depending by the popper placement We  have to compute its offsets slightly differently
     var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
     var mainSide = isHoriz ? 'top' : 'left';
     var secondarySide = isHoriz ? 'left' : 'top';
@@ -2439,7 +2439,7 @@
       var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
       if (modifier.enabled && isFunction(fn)) {
         // Add properties to offsets to make them a complete clientRect object
-        // we do this before each modifier to make sure the previous one doesn't
+        // We  do this before each modifier to make sure the previous one doesn't
         // mess with these values
         data.offsets.popper = getClientRect(data.offsets.popper);
         data.offsets.reference = getClientRect(data.offsets.reference);
@@ -2719,7 +2719,7 @@
    */
   function applyStyle(data) {
     // any property present in `data.styles` will be applied to the popper,
-    // in this way we can make the 3rd party modifiers add custom styles to it
+    // in this way We  can make the 3rd party modifiers add custom styles to it
     // Be aware, modifiers could override the properties defined in the previous
     // lines of this modifier!
     setStyles(data.instance.popper, data.styles);
@@ -2758,7 +2758,7 @@
     popper.setAttribute('x-placement', placement);
 
     // Apply `position` to popper before anything else because
-    // without the position applied we can't guarantee correct computations
+    // without the position applied We  can't guarantee correct computations
     setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
 
     return options;
@@ -2851,7 +2851,7 @@
     var sideB = y === 'right' ? 'left' : 'right';
 
     // if gpuAcceleration is set to `true` and transform is supported,
-    //  we use `translate3d` to apply the position to the popper we
+    //  We  use `translate3d` to apply the position to the popper We 
     // automatically use the supported prefixed version if needed
     var prefixedProperty = getSupportedPropertyName('transform');
 
@@ -2859,9 +2859,9 @@
     // If the content of the popper grows once it's been positioned, it
     // may happen that the popper gets misplaced because of the new content
     // overflowing its reference element
-    // To avoid this problem, we provide two options (x and y), which allow
+    // To avoid this problem, We  provide two options (x and y), which allow
     // the consumer to define the offset origin.
-    // If we position a popper on top of a reference element, we can set
+    // If We  position a popper on top of a reference element, We  can set
     // `x` to `top` to make the popper grow towards its top instead of
     // its bottom.
     var left = void 0,
@@ -2892,7 +2892,7 @@
       styles[sideB] = 0;
       styles.willChange = 'transform';
     } else {
-      // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+      // othwerise, We  use the standard `top`, `left`, `bottom` and `right` properties
       var invertTop = sideA === 'bottom' ? -1 : 1;
       var invertLeft = sideB === 'right' ? -1 : 1;
       styles[sideA] = top * invertTop;
@@ -2967,7 +2967,7 @@
         return data;
       }
     } else {
-      // if the arrowElement isn't a query selector we must check that the
+      // if the arrowElement isn't a query selector We  must check that the
       // provided DOM node is child of its popper node
       if (!data.instance.popper.contains(arrowElement)) {
         console.warn('WARNING: `arrow.element` must be child of its popper element!');
@@ -3008,7 +3008,7 @@
     var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
 
     // Compute the sideValue using the updated popper offsets
-    // take popper margin in account because we don't have this info available
+    // take popper margin in account because We  don't have this info available
     var css = getStyleComputedProperty(data.instance.popper);
     var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
     var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
@@ -3107,7 +3107,7 @@
    * @returns {Object} The data object, properly modified
    */
   function flip(data, options) {
-    // if `inner` modifier is enabled, we can't use the `flip` modifier
+    // if `inner` modifier is enabled, We  can't use the `flip` modifier
     if (isModifierEnabled(data.instance.modifiers, 'inner')) {
       return data;
     }
@@ -3150,7 +3150,7 @@
       var popperOffsets = data.offsets.popper;
       var refOffsets = data.offsets.reference;
 
-      // using floor because the reference offsets may contain decimals we are not going to consider here
+      // using floor because the reference offsets may contain decimals We  are not going to consider here
       var floor = Math.floor;
       var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
 
@@ -3186,8 +3186,8 @@
 
         data.placement = placement + (variation ? '-' + variation : '');
 
-        // this object contains `position`, we want to preserve it along with
-        // any additional property we may add in the future
+        // this object contains `position`, We  want to preserve it along with
+        // any additional property We  may add in the future
         data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
 
         data = runModifiers(data.instance.modifiers, data, 'flip');
@@ -3243,7 +3243,7 @@
     var value = +split[1];
     var unit = split[2];
 
-    // If it's not a number it's an operator, I guess
+    // If it's not a number it's an operator, Weguess
     if (!value) {
       return str;
     }
@@ -3263,7 +3263,7 @@
       var rect = getClientRect(element);
       return rect[measurement] / 100 * value;
     } else if (unit === 'vh' || unit === 'vw') {
-      // if is a vh or vw, we calculate the size based on the viewport
+      // if is a vh or vw, We  calculate the size based on the viewport
       var size = void 0;
       if (unit === 'vh') {
         size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -3272,8 +3272,8 @@
       }
       return size / 100 * value;
     } else {
-      // if is an explicit pixel unit, we get rid of the unit and keep the value
-      // if is an implicit unit, it's px, and we return just the value
+      // if is an explicit pixel unit, We  get rid of the unit and keep the value
+      // if is an implicit unit, it's px, and We  return just the value
       return value;
     }
   }
@@ -3313,7 +3313,7 @@
       console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
     }
 
-    // If divider is found, we divide the list of values and operands to divide
+    // If divider is found, We  divide the list of values and operands to divide
     // them by ofset X and Y.
     var splitRegex = /\s*,\s*|\s+/;
     var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
@@ -3339,7 +3339,7 @@
           return a.concat(b);
         }
       }, [])
-      // Here we convert the string values into number values (in px)
+      // Here We  convert the string values into number values (in px)
       .map(function (str) {
         return toValue(str, measurement, popperOffsets, referenceOffsets);
       });
@@ -3409,7 +3409,7 @@
   function preventOverflow(data, options) {
     var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
 
-    // If offsetParent is the reference element, we really want to
+    // If offsetParent is the reference element, We  really want to
     // go one step up and use the next offsetParent as reference to
     // avoid to make this modifier completely useless and look like broken
     if (data.instance.reference === boundariesElement) {
@@ -3661,8 +3661,8 @@
      * Modifier used to prevent the popper from being positioned outside the boundary.
      *
      * A scenario exists where the reference itself is not within the boundaries.<br />
-     * We can say it has "escaped the boundaries" — or just "escaped".<br />
-     * In this case we need to decide whether the popper should either:
+     * We  can say it has "escaped the boundaries" — or just "escaped".<br />
+     * In this case We  need to decide whether the popper should either:
      *
      * - detach from the reference and remain "trapped" in the boundaries, or
      * - if it should ignore the boundary and "escape with its reference"
@@ -4028,7 +4028,7 @@
       // make update() debounced, so that it only runs at most once-per-tick
       this.update = debounce(this.update.bind(this));
 
-      // with {} we create a new object with the options inside it
+      // with {} We  create a new object with the options inside it
       this.options = _extends({}, Popper.Defaults, options);
 
       // init state
@@ -4081,7 +4081,7 @@
       this.state.eventsEnabled = eventsEnabled;
     }
 
-    // We can't use class properties because they don't get listed in the
+    // We  can't use class properties because they don't get listed in the
     // class prototype and break stuff like Sinon stubs
 
 
@@ -4120,7 +4120,7 @@
        *
        * **DEPRECATION**: This way to access PopperUtils is deprecated
        * and will be removed in v2! Use the PopperUtils module directly instead.
-       * Due to the high instability of the methods contained in Utils, we can't
+       * Due to the high instability of the methods contained in Utils, We  can't
        * guarantee them to follow semver. Use them at your own risk!
        * @static
        * @private
@@ -4315,7 +4315,7 @@
         }
 
         this._popper = new Popper(referenceElement, this._menu, this._getPopperConfig());
-      } // If this is a touch-enabled device we add extra
+      } // If this is a touch-enabled device We  add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
@@ -4460,7 +4460,7 @@
             boundariesElement: this._config.boundary
           }
         }
-      }; // Disable Popper.js if we have a static display
+      }; // Disable Popper.js if We  have a static display
 
       if (this._config.display === 'static') {
         popperConfig.modifiers.applyStyle = {
@@ -4531,8 +4531,8 @@
 
         if (hideEvent.isDefaultPrevented()) {
           continue;
-        } // If this is a touch-enabled device we remove the extra
-        // empty mouseover listeners we added for iOS support
+        } // If this is a touch-enabled device We  remove the extra
+        // empty mouseover listeners We  added for iOS support
 
 
         if ('ontouchstart' in document.documentElement) {
@@ -5614,7 +5614,7 @@
 
         $(this.element).trigger(this.constructor.Event.INSERTED);
         this._popper = new Popper(this.element, tip, this._getPopperConfig(attachment));
-        $(tip).addClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we add extra
+        $(tip).addClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device We  add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
@@ -5678,8 +5678,8 @@
         return;
       }
 
-      $(tip).removeClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we remove the extra
-      // empty mouseover listeners we added for iOS support
+      $(tip).removeClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device We  remove the extra
+      // empty mouseover listeners We  added for iOS support
 
       if ('ontouchstart' in document.documentElement) {
         $(document.body).children().off('mouseover', null, $.noop);
@@ -6175,7 +6175,7 @@
     };
 
     _proto.setContent = function setContent() {
-      var $tip = $(this.getTipElement()); // We use append for html objects to maintain js events
+      var $tip = $(this.getTipElement()); // We  use append for html objects to maintain js events
 
       this.setElementContent($tip.find(SELECTOR_TITLE), this.getTitle());
 
